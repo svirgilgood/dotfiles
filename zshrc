@@ -78,13 +78,6 @@ c() {
             cd "$dir" && ls
         fi
 }
-tmux-helper() { 
-	cd ~/bin/tmux-2.2
-	nroff -mdoc tmux.1|less 
-}
-bibsync() {
-	rsync --progress -r /home/svg/Documents/LIS452 echindod3@principal.dreamhost.com:Documents/
-}
 zathy() {
 	zathura "$@" 2> /dev/null &
 }
