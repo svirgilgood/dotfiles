@@ -102,7 +102,7 @@ xkb_symbols "intl" {
     key <AC11> { [ apostrophe, dead_diaeresis, apostrophe,        quotedbl ] };
 
     key <AB01> { [	   z,          Z,            ae,               AE ] };
-    key <AB02> { [	   x,          X,             x,                X ] };
+    key <AB02> { [	   x,          X,  dead_belowdot,               X ] };
     key <AB03> { [	   c,          C,     copyright,             cent ] };
     key <AB04> { [	   v,          V,    dead_caron,                V ] };
     key <AB05> { [	   b,          B,    dead_breve,                B ] };
