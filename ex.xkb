@@ -85,27 +85,27 @@ xkb_symbols "intl" {
     key <AD08> { [	   i,          I,    dead_grave,           Iacute ] };
     key <AD09> { [	   o,          O,        oacute,           Oacute ] };
     key <AD10> { [	   p,          P,    odiaeresis,       Odiaeresis ] };
-    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, leftdoublequotemark ] };
-    key <AD12> { [bracketright, braceright, guillemotright, rightdoublequotemark ] };
+    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, U02BF ] };
+    key <AD12> { [bracketright, braceright, guillemotright, U02BE ] };
 
     key <AC01> { [	   a,          A,   dead_macron,   dead_abovering ] };
     key <AC02> { [	   s,          S,        ssharp,          section ] };
     key <AC03> { [	   d,          D,           eth,              ETH ] };
     key <AC04> { [	   f,          F,             f,                F ] };
     key <AC05> { [	   g,          G,             g,                G ] };
-    key <AC06> { [	   h,          H,             h,                H ] };
+    key <AC06> { [	   h,          H, dead_belowmacro,    dead_stroke ] };
     key <AC07> { [	   j,          J,             j,                J ] };
     key <AC08> { [	   k,          K,            oe,               OE ] };
 
     key <AC09> { [	   l,          L,        oslash,         Ooblique ] };
     key <AC10> { [ semicolon,      colon,     paragraph,           degree ] };
-    key <AC11> { [ apostrophe, dead_diaeresis, apostrophe,        quotedbl ] };
+    key <AC11> { [ apostrophe, qutoedbl, apostrophe,   dead_diaeresis ] };
 
     key <AB01> { [	   z,          Z,            ae,               AE ] };
     key <AB02> { [	   x,          X,  dead_belowdot,               X ] };
     key <AB03> { [	   c,          C,     copyright,             cent ] };
     key <AB04> { [	   v,          V,    dead_caron,                V ] };
-    key <AB05> { [	   b,          B,    dead_breve,                B ] };
+    key <AB05> { [	   b,          B,    dead_breve,  dead_belowbreve ] };
     key <AB06> { [	   n,          N,    dead_tilde,           Ntilde ] };
     key <AB07> { [	   m,          M,            mu,               mu ] };
     key <AB08> { [     comma,       less,      ccedilla,         Ccedilla ] };
