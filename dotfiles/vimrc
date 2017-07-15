@@ -1,15 +1,49 @@
-execute pathogen#infect()
+" settings -- look them up with :help for explanations
+set nocompatible backspace=indent,eol,start backup undofile history=50 ruler
+set showcmd incsearch mouse=a hlsearch modeline nowrap number clipboard=unnamed
+set shell=/bin/bash
+
+set backupdir=./.backup,$HOME/.vim/backups,/tmp
+set directory=./.backup,$HOME/.vim/backups,/tmp
 
 syntax on
 filetype plugin indent on
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set number
+" colorscheme cterm
 
+" https://github.com/tpope/vim-pathogen for how to use.
+" cd ~/.vim/bundle && \ git clone <github link to plugin>
+execute pathogen#infect()
 
-autocmd BufRead *.adoc set tw=78 | :Voom asciidoc
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" filetype settings and so forth -- :help autogroup
+augroup vimrcEx
+  au!
+  autocmd FileType text setlocal textwidth=78
+  autocmd BufRead *.asciidoc set tw=78 | :Voom asciidoc
+  
+  "jump to last known position
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+augroup END
 
-hi Pmenu ctermfg=8 ctermbg=0
-hi PmenuSel ctermfg=6 ctermbg=0
+"SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabLongestEnhanced = 1
+let g:SuperTabLongestHighlight = 1
+set cot=longest,menuone 
+
+"keymaps
+let mapleader=','
+
+inoremap <C-U> <C-G>u<C-U>
+
+command -nargs=* HB r!/Users/shawngoodwin/bin/vibible -b OSHB -o a -k <args>| grep -v "^(\w*)$"
+inoremap <leader>hb <space><Esc>"hd2Bmv:HB <C-R>h<CR>0"hd$`vi<C-r>h
+xnoremap <leader>hb "hdmv:HB <C-R>h<CR>0"hd$`vi<C-R>h
+
+command -nargs=* GB r!vibible -b 2TGreek -o a -k <args>| grep -v "^(\w*)$"
+inoremap <leader>gb <space><Esc>"hd2Bmv:GB <C-R>h<CR>0"hd$`vi<C-r>h
+xnoremap <leader>gb "hdmv:GB <C-R>h<CR>0"hd$`vi<C-R>h
+
+noremap <Leader>r mv{gq}`v
