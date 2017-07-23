@@ -1,11 +1,11 @@
 !! Appearance
 urxvt.termName: rxvt-unicode
 urxvt.scrollBar: false
-urxvt.background: black
+urxvt.background: #202746
 urxvt.foreground: gray
 !! Font prefferenes
-urxvt.font: xft:DejaVu Sans Mono:pixelsize=10
-urxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=10:weight=bold
+urxvt.font: xft:monospace:pixelsize=10
+urxvt.boldFont: xft:monospace:pixelsize=10:weight=bold
 urxvt.letterSpace: -1
 !! Larger history limit
 urxvt.saveLines: 1000000
@@ -29,20 +29,55 @@ urxvt.keysym.Control-Right: \033[1;5C
 
 !! Tango color theme
 !! Strange - it matches tango from gnome-terminal, but looks different
-URxvt.color0: rgb:00/00/00
-URxvt.color1: rgb:CC/00/00
-URxvt.color2: rgb:4E/9A/06
-URxvt.color3: rgb:C4/A0/00
-URxvt.color4: rgb:34/65/A4
-URxvt.color5: rgb:75/50/7B
-URxvt.color6: rgb:06/98/9A
-URxvt.color7: rgb:D3/D7/CF
-URxvt.color8: rgb:55/57/53
-URxvt.color9: rgb:EF/29/29
-URxvt.color10: rgb:8A/E2/34
-URxvt.color11: rgb:FC/E9/4F
-URxvt.color12: rgb:72/9F/CF
-URxvt.color13: rgb:AD/7F/A8
-URxvt.color14: rgb:34/E2/E2
-URxvt.color15: rgb:EE/EE/EC
+!! URxvt.color0: rgb:32/39/70
+!! URxvt.color1: rgb:CC/00/00
+!! URxvt.color2: rgb:4E/9A/06
+!! URxvt.color3: rgb:C4/A0/00
+!! URxvt.color4: rgb:34/65/A4
+!! URxvt.color5: rgb:75/50/7B
+!! URxvt.color6: rgb:06/98/9A
+!! URxvt.color7: rgb:D3/D7/CF
+!! URxvt.color8: rgb:55/57/53
+!! URxvt.color9: rgb:EF/29/29
+!! URxvt.color10: rgb:8A/E2/34
+!! URxvt.color11: rgb:FC/E9/4F
+!! URxvt.color12: rgb:72/9F/CF
+!! URxvt.color13: rgb:AD/7F/A8
+!! URxvt.color14: rgb:34/E2/E2
+!! URxvt.color15: rgb:EE/EE/EC
 URxvt.colorBD: rgb:ff/ff/ff
+
+!! URxvt.color0: rgb:32/39/70
+!! URxvt.color1: rgb:41/50/86
+!! URxvt.color2: rgb:94/102/135
+!! URxvt.color3: rgb:107/115/148
+!! URxvt.color4: rgb:137/142/164
+!! URxvt.color5: rgb:151/157/180
+!! URxvt.color6: rgb:223/226/241
+!! URxvt.color7: rgb:245/247/255
+!! URxvt.color8: rgb:201/73/34
+!! URxvt.color9: rgb:199/107/41
+!! URxvt.color10: rgb:192/139/48
+!! URxvt.color11: rgb:172/151/57
+!! URxvt.color12: rgb:34/162/201
+!! URxvt.color13: rgb:61/143/209
+!! URxvt.color14: rgb:102/121/204
+!! URxvt.color15: rgb:156/99/122
+!! URxvt.colorBD: rgb:ff/ff/ff
+
+URxvt.color0: #202746
+URxvt.color1: #293256
+URxvt.color2: #5e6687
+URxvt.color3: #6b7394
+URxvt.color4: #898ea4
+URxvt.color5: #979db4
+URxvt.color6: #dfe2f1
+URxvt.color7: #f5f7ff
+URxvt.color8: #c94922
+URxvt.color9: #c76b29
+URxvt.color10: #c08b30
+URxvt.color11: #ac9739
+URxvt.color12: #22a2c9
+URxvt.color13: #3d8fd1
+URxvt.color14: #6679cc
+URxvt.color15: #9c637a
