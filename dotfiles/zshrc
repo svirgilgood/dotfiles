@@ -9,13 +9,13 @@
 [[ -n $SSH_TTY ]] && host="%F{green}%m%f:"
 precmd() {
   PROMPT="$host%F{blue}%~%f> "
-  updates="$(xxd -ps $HOME/.updates)" 2> /dev/null
+  updates="$(cat ~/.updates | wc -l)" 2> /dev/null
   branch=$(git branch | fgrep '*') 2> /dev/null
   if [[ -n $branch ]]; then
     [[ -n $(git status -s) ]] 2> /dev/null && colo='red' || colo='green'
     PROMPT="%F{$colo}${branch#* }%f|$PROMPT"
   fi
-  [[ $updates != 00 && -n $updates ]] && PROMPT="%F{yellow}$updates%f|$PROMPT"
+  [[ $updates != 0 && -n $updates ]] && PROMPT="%F{yellow}$updates%f|$PROMPT"
   [[ $USER = 'root' ]] && PROMPT="%F{yellow}%m%f:%F{red}%~%f# "
   PROMPT2=$(print -P $PROMPT|sed 's/././g')
 }
@@ -67,6 +67,7 @@ alias ls='ls --color=auto'
 export PATH="~/anaconda3/bin:$PATH"
 export PATH="~/bin:$PATH"
 export PATH="/home/svg/.local/bin:$PATH"
+export EDITOR="/usr/bin/nvim"
 
 libgen() {
     url='http://gen.lib.rus.ec/search.php?req='"$@"
@@ -77,6 +78,13 @@ c() {
         if [ "$dir" != "" ]; then
             cd "$dir" && ls
         fi
+}
+tmux-helper() { 
+	cd ~/bin/tmux-2.2
+	nroff -mdoc tmux.1|less 
+}
+bibsync() {
+	rsync --progress -r /home/svg/Documents/LIS452 echindod3@principal.dreamhost.com:Documents/
 }
 zathy() {
 	zathura "$@" 2> /dev/null &
