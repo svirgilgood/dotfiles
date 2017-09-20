@@ -85,8 +85,8 @@ xkb_symbols "intl" {
     key <AD08> { [	   i,          I,    dead_grave,           Iacute ] };
     key <AD09> { [	   o,          O,        oacute,           Oacute ] };
     key <AD10> { [	   p,          P,    odiaeresis,       Odiaeresis ] };
-    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, U02BF ] };
-    key <AD12> { [bracketright, braceright, guillemotright, U02BE ] };
+    key <AD11> { [ bracketleft,  braceleft,   U02BF,    guillemotleft ] };
+    key <AD12> { [bracketright, braceright,   U02BE,   guillemotright ] };
 
     key <AC01> { [	   a,          A,   dead_macron,   dead_abovering ] };
     key <AC02> { [	   s,          S,        ssharp,          section ] };
@@ -142,5 +142,13 @@ xkb_symbols "altgr-intl" {
    key <AE07> { [        7, ampersand,   dead_horn,       onehalf       ] };
    key <AE08> { [        8, asterisk,    dead_ogonek,     threequarters ] };
 
+   key <AD11> { [ bracketleft,  braceleft,   U02BF,    guillemotleft ] };
+   key <AD12> { [bracketright, braceright,   U02BE,   guillemotright ] };
+   key <AC06> { [	   h,          H,        U1E2B,           U1E2A  ] };
+   key <AB02> { [	   x,          X,  dead_belowdot,               X ] };
+
+
+   key <AB04> { [	   v,          V,    dead_caron,                V ] };
+   key <AB05> { [	   b,          B,    dead_breve,  dead_belowbreve ] };
    include "level3(ralt_switch)"
 };
