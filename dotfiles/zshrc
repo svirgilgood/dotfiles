@@ -9,13 +9,13 @@
 [[ -n $SSH_TTY ]] && host="%F{green}%m%f:"
 precmd() {
   PROMPT="$host%F{blue}%~%f> "
-  updates="$(xxd -ps $HOME/.updates)" 2> /dev/null
+  updates="$(cat $HOME/.updates | wc -l)" 2> /dev/null
   branch=$(git branch | fgrep '*') 2> /dev/null
   if [[ -n $branch ]]; then
     [[ -n $(git status -s) ]] 2> /dev/null && colo='red' || colo='green'
     PROMPT="%F{$colo}${branch#* }%f|$PROMPT"
   fi
-  [[ $updates != 00 && -n $updates ]] && PROMPT="%F{yellow}$updates%f|$PROMPT"
+  [[ $updates != 0 && -n $updates ]] && PROMPT="%F{yellow}$updates%f|$PROMPT"
   [[ $USER = 'root' ]] && PROMPT="%F{yellow}%m%f:%F{red}%~%f# "
   PROMPT2=$(print -P $PROMPT|sed 's/././g')
 }
@@ -56,7 +56,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 
-source /home/svg/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 source $HOME/.cargo/env
 
 # aliases
@@ -80,5 +80,10 @@ c() {
 }
 zathy() {
 	zathura "$@" 2> /dev/null &
+}
+
+mm() {
+    sshfs echindod3@principal.dreamhost.com:smith/ /home/svg/Documents/mnt/
+    echo "Music Mounted!"
 }
 export PATH=/home/svg/.gem/ruby/2.3.0/bin:$PATH
