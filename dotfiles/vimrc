@@ -5,6 +5,11 @@ inoremap jk <esc>
 execute pathogen#infect()
 syntax on 
 filetype plugin indent on
+
+" backup directories
+set backupdir=./.backup,$HOME/.vim/backups,/tmp
+set directory=./.backup,$HOME/.vim/backups,/tmp
+
 set number 
 " show existing tab with 4 spaces width
 set tabstop=4
@@ -39,11 +44,27 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " navigation
 
+noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <backspace> <C-u>
 nnoremap <space> <C-D>
+noremap <leader>l <C-w>l
+noremap <leader>k <C-w>k
+noremap <leader>j <C-w>j
+noremap <leader>h <C-w>h
 hi Pmenu ctermfg=8 ctermbg=0
 hi PmenuSel ctermfg=6 ctermbg=0
 
 " abbreviations
 iabbrev adn and
 iabbrev fo of
+
+" bible functions 
+function! BibleGen(mod, key)
+    exe 'command -nargs=+' a:mod "let @h=system('diatheke -b" a:mod
+                \"-o acv -k <args> | grep -v" a:mod "')"
+    exe "inoremap ,".a:key '<space><Esc>"hd2B:'.a:mod '<C-R>h<CR>i<C-r>h'
+    exe "xnoremap ,".a:key '"hd:'.a:mod '<C-R>h<CR>i<C-R>h<Esc>'
+endfunction
+
+call BibleGen('MorphGNT', 'gb')
+call BibleGen('OSHB', 'hb')
