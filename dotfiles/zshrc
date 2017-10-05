@@ -59,7 +59,8 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.cargo/env
+#source $HOME/.cargo/env
+
 
 # aliases
 
@@ -68,11 +69,11 @@ alias vim=nvim
 alias ls='ls --color=auto'
 export PATH="~/anaconda3/bin:$PATH"
 export PATH="~/bin:$PATH"
-export PATH="/home/svg/.local/bin:$PATH"
+export PATH="/home/sgoodwin/.local/bin:$PATH"
 export EDITOR="/usr/bin/nvim"
 
 mm() {
-    sshfs echindod3@principal.dreamhost.com:smith /home/svg/Documents/mnt/ 
+    sshfs echindod3@principal.dreamhost.com:smith /home/sgoodwin/Documents/mnt/ 
     echo 'Music Folder Mounted!'
 }
 

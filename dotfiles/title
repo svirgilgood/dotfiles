@@ -13,6 +13,6 @@ do
     if [ -z "$title" ]; then
         echo "$line | $kblayout" || exit 1
     else
-        echo "TITLE: $title | $line | $kblayout" || exit 1
+        echo "$title | $line | $kblayout" || exit 1
     fi
 done
