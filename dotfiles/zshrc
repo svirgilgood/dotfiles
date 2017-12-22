@@ -72,6 +72,14 @@ export PATH="~/bin:$PATH"
 export PATH="/home/sgoodwin/.local/bin:$PATH"
 export EDITOR="/usr/bin/nvim"
 
+pp() {
+    xclip -o -selection clipboard
+}
+
+yy() {
+    xclip -i -selection clipboard
+}
+
 mm() {
     sshfs echindod3@principal.dreamhost.com:smith /home/sgoodwin/Documents/mnt/ 
     echo 'Music Folder Mounted!'
@@ -92,7 +100,7 @@ tmux-helper() {
 	nroff -mdoc tmux.1|less 
 }
 bibsync() {
-	rsync --progress -r /home/svg/Documents/LIS452 echindod3@principal.dreamhost.com:Documents/
+	rsync --progress -r /home/sgoodwin/Documents/LIS echindod3@principal.dreamhost.com:Documents/
 }
 zathy() {
 	zathura "$@" 2> /dev/null &
@@ -108,4 +116,4 @@ lis() {
     rsync --progress "$@" echindod3@principal.dreamhost.com:library.edubbainstitute.org/LIS/
 }
 
-export PATH=/home/svg/.gem/ruby/2.3.0/bin:$PATH
+export PATH=~/.gem/ruby/2.3.0/bin:$PATH
