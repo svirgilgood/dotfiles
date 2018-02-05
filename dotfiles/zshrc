@@ -69,7 +69,7 @@ alias vim=nvim
 alias ls='ls --color=auto'
 export PATH="~/anaconda3/bin:$PATH"
 export PATH="~/bin:$PATH"
-export PATH="/home/sgoodwin/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="/usr/bin/nvim"
 
 pp() {
@@ -81,7 +81,7 @@ yy() {
 }
 
 mm() {
-    sshfs echindod3@principal.dreamhost.com:smith /home/sgoodwin/Documents/mnt/ 
+    sshfs "$SERVER":smith "$HOME"/Documents/mnt/ 
     echo 'Music Folder Mounted!'
 }
 
@@ -100,7 +100,7 @@ tmux-helper() {
 	nroff -mdoc tmux.1|less 
 }
 bibsync() {
-	rsync --progress -r /home/sgoodwin/Documents/LIS echindod3@principal.dreamhost.com:Documents/
+	rsync --progress -kr "$HOME"/Documents/LIS "$SERVER":Documents/
 }
 zathy() {
 	zathura "$@" 2> /dev/null &
@@ -110,10 +110,10 @@ supsu() {
     apt list --upgradable > ~/.updates
 }
 dream() {
-    mosh echindod3@principal.dreamhost.com --server=/home/echindod3/login.sh 
+    mosh "$SERVER" --server=/home/echindod3/login.sh 
 }
 lis() {
-    rsync --progress "$@" echindod3@principal.dreamhost.com:library.edubbainstitute.org/LIS/
+    rsync --progress "$@" "$SERVER":library.edubbainstitute.org/LIS/
 }
 
 export PATH=~/.gem/ruby/2.3.0/bin:$PATH

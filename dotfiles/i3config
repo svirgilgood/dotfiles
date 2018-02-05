@@ -70,6 +70,11 @@ bindsym $mod+Shift+f exec /home/sgoodwin/bin/filefinder
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Language
+bindsym $mod+Shift+s exec /home/sgoodwin/bin/langswitcher.sh 
+bindsym $mod+ܴܣ exec /home/sgoodwin/bin/languagswitcher.sh
+
+
 # change focus
 bindsym $mod+j focus down
 bindsym $mod+k focus up

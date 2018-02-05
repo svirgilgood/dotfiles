@@ -1,0 +1,39 @@
+#!/bin/sh
+
+lexer="$1"
+name="$2"
+style="${3:-paraiso-dark}"
+
+if [ -n "$name" ]; then
+    code="$(pygmentize -f html -l "$lexer" -O linenos=1 "$name")"
+else
+    code="$(pygmentize -f html -l "$lexer" -O linenos=1 <&0 )"
+    name="$(date +%F_%H.%M.%S)"
+fi
+
+name="${name##*/}"
+name="${name%.*}"
+echo "$name"
+cat > "${name}.html" << EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$name</title>
+    <STYLE type="text/css">
+$(pygmentize -S "$style" -f html -a .highlighttable)
+.title { font-style: italic; font-size: 20px }
+.highlight { padding-left: 10px; padding-right: 10px }
+    </STYLE>
+</head>
+<body bgcolor="#161616" text="white">
+    <div class="title">$name</div>
+    <br/>
+$code
+</body>
+</html>
+EOF
+
+chmod 644 "$name.html"
+rsync --progress "$name.html" "$SERVER":library.edubbainstitute.org/code/
+echo -n "http://library.edubbainstitute.org/code/$name.html"
