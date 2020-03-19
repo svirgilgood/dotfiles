@@ -18,9 +18,9 @@ set $Locker i3lock && sleep 1
 bindsym Mod4+l exec --no-startup-id $Locker, mode "default"
 
 # startup scripts
-#
 
-exec /home/sgoodwin/.screenlayout/normal.sh
+exec /home/sgoodwin/.screenlayout/landscape.sh
+exec /home/sgoodwin/bin/sxkbm
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -129,13 +129,19 @@ bindsym $mod+a focus parent
 # media 
 bindsym $mod+equal exec ponymix increase 5
 bindsym $mod+minus exec ponymix decrease 5
-bindsym $mod+backslash exec mocp --toggle-pause
-bindsym $mod+bracketleft exec mocp --previous
-bindsym $mod+bracketright exec mocp --next
-bindsym $mod+Shift+bracketleft exec mocp --seek -5
-bindsym $mod+Shift+bracketright exec mocp --seek +5
+bindsym $mod+backslash exec /home/sgoodwin/bin/remote.py pause
+#bindsym $mod+bracketleft exec mocp --previous
+bindsym $mod+bracketleft exec /home/sgoodwin/bin/remote.py previous
+bindsym $mod+bracketright exec /home/sgoodwin/bin/remote.py next
+#bindsym $mod+Shift+bracketleft exec mocp --seek -5
+#bindsym $mod+Shift+bracketright exec mocp --seek +5
 bindsym $mod+Control+bracketleft exec mocp --seek -60
-bindsym $mod+Control+bracketright exec mocp --seek +60
+#bindsym $mod+Control+bracketright exec mocp --seek +60
+bindsym $mod+z exec /home/sgoodwin/bin/ntitle 
+#bindsym $mod+z exec notify-send "$HOME"
+bindsym $mod+shift+backslash exec mocp --toggle-pause
+bindsym $mod+shift+bracketleft exec mocp --previous
+bindsym $mod+shift+bracketright exec mocp --next
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -199,6 +205,7 @@ set $firefox_profiles System (d) default, (p) personal, (s) profilemanager
 mode "firefox_profiles" {
         bindsym d exec firefox -p "default",  mode "default"
         bindsym p exec firefox -p "Personal", mode "default"
+        bindsym h exec firefox -p "WFH", mode "default"
         bindsym s exec firefox --ProfileManager, mode "default"
 
         bindsym Return mode "default"
@@ -211,6 +218,10 @@ mode "monitor_setup" {
     bindsym n exec /home/sgoodwin/.screenlayout/normal.sh, mode "default"
     bindsym m exec /home/sgoodwin/.screenlayout/landscape.sh, mode "default"
     bindsym l exec /home/sgoodwin/.screenlayout/laptop.sh, mode "default"
+    bindsym h exec /home/sgoodwin/.screenlayout/home.sh, mode "default"
+    bindsym o exec /home/sgoodwin/.screenlayout/homethree.sh, mode "default"
+    bindsym f exec /home/sgoodwin/.screenlayout/threemonitors.sh, mode "default"
+    bindsym t exec /home/sgoodwin/.screenlayout/threeflat2.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "defualt"
