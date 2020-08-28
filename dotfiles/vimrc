@@ -54,9 +54,11 @@ noremap <leader>i :set rightleft!<cr>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
+nnoremap <C-j> gt 
+nnoremap <C-k> gT
+ 
 " navigation
-noremap <C-o> :Voom python<CR>
+noremap <C-o> :Voom python<cr>
 noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <backspace> <C-u>
 nnoremap <space> <C-D>
@@ -144,6 +146,21 @@ nnoremap <c-w> dfBh"kp
 " ale mapings
 
 " vench mappings
+
+" vnoremap <c-q> d:call EncodeMarc("<c-r>"")<cr>h"ap
+vnoremap <c-q> :! mf<cr><cr>
+
+" This calls the python cmd `mf` and puts the contents of the regester through
+" the command and results on the next line. 
+" nnoremap <c-q> :r!mf <c-r>"<cr>>>
+
+nnoremap <c-q> mvbye:r!mf <c-r>"<cr>>>`v
+inoremap <c-w> <esc>mvbye:r!mf <c-r>"<cr>>>`v
+
+
+
+" vench mappings
+
 
 " nnoremap <leader>t :python3 table_lists()<cr>
 

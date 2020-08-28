@@ -142,7 +142,6 @@ bindsym $mod+Control+bracketleft exec mocp --seek -60
 bindsym $mod+z exec /home/shawn/bin/ntitle 
 #bindsym $mod+z exec notify-send "$HOME"
 
-
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -205,6 +204,7 @@ set $firefox_profiles System (d) default, (p) personal, (s) profilemanager
 mode "firefox_profiles" {
         bindsym d exec firefox -p "Work",  mode "default"
         bindsym p exec firefox -p "Personal", mode "default"
+        bindsym h exec firefox -p "WFH", mode "default"
         bindsym s exec firefox --ProfileManager, mode "default"
 
         bindsym Return mode "default"
@@ -214,13 +214,13 @@ mode "firefox_profiles" {
 bindsym $mod+Shift+w mode "firefox_profiles"
 
 mode "monitor_setup" {
-    bindsym n exec /home/shawn/.screenlayout/normal.sh, mode "default"
-    bindsym m exec /home/shawn/.screenlayout/landscape.sh, mode "default"
-    bindsym l exec /home/shawn/.screenlayout/laptop.sh, mode "default"
-    bindsym h exec /home/shawn/.screenlayout/home.sh, mode "default"
-    bindsym o exec /home/shawn/.screenlayout/homethree.sh, mode "default"
-    bindsym f exec /home/shawn/.screenlayout/threemonitors.sh, mode "default"
-    bindsym t exec /home/shawn/.screenlayout/threeflat2.sh, mode "default"
+    bindsym n exec /home/sgoodwin/.screenlayout/normal.sh, mode "default"
+    bindsym m exec /home/sgoodwin/.screenlayout/landscape.sh, mode "default"
+    bindsym l exec /home/sgoodwin/.screenlayout/laptop.sh, mode "default"
+    bindsym h exec /home/sgoodwin/.screenlayout/home.sh, mode "default"
+    bindsym o exec /home/sgoodwin/.screenlayout/homethree.sh, mode "default"
+    bindsym f exec /home/sgoodwin/.screenlayout/threemonitors.sh, mode "default"
+    bindsym t exec /home/sgoodwin/.screenlayout/threeflat2.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "defualt"
