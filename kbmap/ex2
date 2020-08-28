@@ -66,7 +66,7 @@ xkb_symbols "intl" {
     key <AE02> { [	   2,         at,   twosuperior, dead_doubleacute ] };
     key <AE03> { [	   3, numbersign, threesuperior,      dead_macron ] };
     key <AE04> { [	   4,     dollar,      currency,         sterling ] };
-    key <AE05> { [	   5,    percent,      EuroSign,     U00A7 ] };
+    key <AE05> { [	   5,    percent,      EuroSign,     dead_cedilla ] };
     key <AE06> { [    6, asciicircum,    dead_circumflex, onequarter  ] };
     key <AE07> { [	   7,  ampersand,       onehalf,	dead_horn ] };
     key <AE08> { [	   8,   asterisk, threequarters,      dead_ogonek ] };
@@ -85,14 +85,14 @@ xkb_symbols "intl" {
     key <AD08> { [	   i,          I,    dead_grave,           Iacute ] };
     key <AD09> { [	   o,          O,        oacute,           Oacute ] };
     key <AD10> { [	   p,          P,    odiaeresis,       Odiaeresis ] };
-    key <AD11> { [ bracketleft,  braceleft,  U02BB, U02BF ] };
-    key <AD12> { [bracketright, braceright, U02BC, U02BE ] };
+    key <AD11> { [ bracketleft,  braceleft,  guillemotleft, U02BF ] };
+    key <AD12> { [bracketright, braceright, guillemotright, U02BE ] };
 
     key <AC01> { [	   a,          A,   dead_macron,   dead_abovering ] };
     key <AC02> { [	   s,          S,        ssharp,          section ] };
     key <AC03> { [	   d,          D,           eth,              ETH ] };
-    key <AC04> { [	   f,          F,             f,                F ] }; // LTR Overide, RTL Overide:
-    key <AC05> { [	   g,          G,         U0303,                G ] };
+    key <AC04> { [	   f,          F,             f,                F ] };
+    key <AC05> { [	   g,          G,             g,                G ] };
     key <AC06> { [	   h,          H,         U1E2B,            U1E2A ] };
     key <AC07> { [	   j,          J,  dead_belowmacro,    dead_stroke ] };
     key <AC08> { [	   k,          K,            oe,               OE ] };
@@ -103,7 +103,7 @@ xkb_symbols "intl" {
 
     key <AB01> { [	   z,          Z,            ae,               AE ] };
     key <AB02> { [	   x,          X,  dead_belowdot,               X ] };
-    key <AB03> { [	   c,          C,     dead_cedilla,             cent ] };
+    key <AB03> { [	   c,          C,     copyright,             cent ] };
     key <AB04> { [	   v,          V,    dead_caron,                V ] };
     key <AB05> { [	   b,          B,    dead_breve,  dead_belowbreve ] };
     key <AB06> { [	   n,          N,    dead_tilde,           Ntilde ] };

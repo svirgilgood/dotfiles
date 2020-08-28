@@ -17,6 +17,9 @@ precmd() {
     [[ -n $(git status -s) ]] 2> /dev/null && colo='red' || colo='green'
     PROMPT="%F{$colo}${branch#* }%f|$PROMPT"
   fi
+  if [[ $VIRTUAL_ENV ]]; then 
+      PROMPT="$(basename $VIRTUAL_ENV)|$PROMPT"
+  fi
   [[ $updates != 1 && -n $updates ]] && PROMPT="%F{yellow}$(($updates -1 ))%f|$PROMPT"
   [[ $USER = 'root' ]] && PROMPT="%F{yellow}%m%f:%F{red}%~%f# "
   PROMPT2=$(print -P $PROMPT|sed 's/././g')
@@ -32,8 +35,8 @@ bindkey -v
 #source ~/.bash_profile
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -65,12 +68,19 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # aliases
 
 alias info='info --vi-keys'
-alias vim=nvim
+#alias vim=nvim
 alias ls='ls --color=auto'
 export PATH="~/anaconda3/bin:$PATH"
 export PATH="~/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/bin/vim"
+
+socks() {
+    port='10000' 
+    addr='sgoodwin@192.168.31.195'
+    echo 'ssh -D '"$port""$addr"
+    ssh -D "$port" "$addr"
+}
 
 pp() {
     xclip -o -selection clipboard
@@ -80,9 +90,17 @@ yy() {
     xclip -i -selection clipboard
 }
 
+pi() {
+    xclip -o -selection clipboard | xclip -i -selection primary
+}
+
 mm() {
-    sshfs "$SERVER":smith "$HOME"/Documents/mnt/ 
+    sshfs "$SERVER":smith "$HOME"/Documents/media/ 
     echo 'Music Folder Mounted!'
+}
+
+macmount() {
+    sshfs "$MACCLIENT":Documents "$HOME"/Documents/mac && echo "Mac Mounted" || echo "Failed to Mount Mac"
 }
 
 libgen() {
@@ -95,12 +113,15 @@ c() {
             cd "$dir" && ls
         fi
 }
+ll(){
+    ls -lahG
+}
 tmux-helper() { 
 	cd ~/bin/tmux-2.2
 	nroff -mdoc tmux.1|less 
 }
 bibsync() {
-	rsync --progress -kr "$HOME"/Documents/LIS "$SERVER":Documents/
+	rsync --progress -kr "$HOME"/Documents/cifshare/LIS "$SERVER":Documents/
 }
 zathy() {
 	zathura "$@" 2> /dev/null &
@@ -115,5 +136,21 @@ dream() {
 lis() {
     rsync --progress "$@" "$SERVER":library.edubbainstitute.org/LIS/
 }
+macsync() {
+    rsync --progress "$@" "$MACCLIENT":Desktop
+}
+macmocp() {
+    ssh -t "$MACCLIENT" mocp "$@";
+}
+cifmount() {
+    user="$(users)"
+    sudo mount -t cifs -o uid=$user,credentials=/etc/cifspwd,file_mode=0664,rw,iocharset=utf8,vers=1.0,gid=sambashare //192.168.18.85/fs/Departments/Production /mnt/cifs/Production
+}
+hs() {
+    iconv -t ISO-8859-8 | hspell "$@" | iconv -f ISO-8859-8;
+}
 
 export PATH=~/.gem/ruby/2.3.0/bin:$PATH
+
+# This line disables the Software Flow Contol (XON/XOFF)
+stty -ixon 

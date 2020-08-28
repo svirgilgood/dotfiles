@@ -9,18 +9,18 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 
 # Super+L to lock the screen
 set $Locker i3lock && sleep 1
 
-bindsym Mod4+l exec --no-startup-id $Locker, mode "default"
+bindsym $mod+Mod1+l exec --no-startup-id $Locker, mode "default"
 
 # startup scripts
-#
 
-exec /home/sgoodwin/.screenlayout/normal.sh
+exec /home/shawn/.screenlayout/landscape.sh
+exec /home/shawn/bin/sxkbm
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -59,10 +59,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec /home/sgoodwin/bin/dmr
+bindsym $mod+d exec /home/shawn/bin/dmr
 
 # filefinder script
-bindsym $mod+Shift+f exec /home/sgoodwin/bin/filefinder
+bindsym $mod+Shift+f exec /home/shawn/bin/filefinder
 #
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -71,8 +71,8 @@ bindsym $mod+Shift+f exec /home/sgoodwin/bin/filefinder
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Language
-bindsym $mod+Shift+s exec /home/sgoodwin/bin/langswitcher.sh 
-bindsym $mod+ܴܣ exec /home/sgoodwin/bin/languagswitcher.sh
+bindsym $mod+Shift+s exec /home/shawn/bin/langswitcher.sh 
+# bindsym $mod+ܴܣ exec /home/shawn/bin/languagswitcher.sh
 
 
 # change focus
@@ -130,12 +130,18 @@ bindsym $mod+a focus parent
 bindsym $mod+equal exec ponymix increase 5
 bindsym $mod+minus exec ponymix decrease 5
 bindsym $mod+backslash exec mocp --toggle-pause
+#bindsym $mod+backslash exec ssh sgoodwin@10.1.10.13 "mocp --toggle-pause"
 bindsym $mod+bracketleft exec mocp --previous
+#bindsym $mod+bracketleft exec ssh sgoodwin@10.1.10.13 "mocp --previous"
 bindsym $mod+bracketright exec mocp --next
+#bindsym $mod+bracketright exec ssh sgoodwin@10.1.10.13 "mocp --next"
 bindsym $mod+Shift+bracketleft exec mocp --seek -5
 bindsym $mod+Shift+bracketright exec mocp --seek +5
 bindsym $mod+Control+bracketleft exec mocp --seek -60
-bindsym $mod+Control+bracketright exec mocp --seek +60
+#bindsym $mod+Control+bracketright exec mocp --seek +60
+bindsym $mod+z exec /home/shawn/bin/ntitle 
+#bindsym $mod+z exec notify-send "$HOME"
+
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -197,7 +203,7 @@ bindsym $mod+r mode "resize"
 
 set $firefox_profiles System (d) default, (p) personal, (s) profilemanager 
 mode "firefox_profiles" {
-        bindsym d exec firefox -p "default",  mode "default"
+        bindsym d exec firefox -p "Work",  mode "default"
         bindsym p exec firefox -p "Personal", mode "default"
         bindsym s exec firefox --ProfileManager, mode "default"
 
@@ -208,9 +214,13 @@ mode "firefox_profiles" {
 bindsym $mod+Shift+w mode "firefox_profiles"
 
 mode "monitor_setup" {
-    bindsym n exec /home/sgoodwin/.screenlayout/normal.sh, mode "default"
-    bindsym m exec /home/sgoodwin/.screenlayout/landscape.sh, mode "default"
-    bindsym l exec /home/sgoodwin/.screenlayout/laptop.sh, mode "default"
+    bindsym n exec /home/shawn/.screenlayout/normal.sh, mode "default"
+    bindsym m exec /home/shawn/.screenlayout/landscape.sh, mode "default"
+    bindsym l exec /home/shawn/.screenlayout/laptop.sh, mode "default"
+    bindsym h exec /home/shawn/.screenlayout/home.sh, mode "default"
+    bindsym o exec /home/shawn/.screenlayout/homethree.sh, mode "default"
+    bindsym f exec /home/shawn/.screenlayout/threemonitors.sh, mode "default"
+    bindsym t exec /home/shawn/.screenlayout/threeflat2.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "defualt"
@@ -221,7 +231,7 @@ bindsym $mod+Shift+m mode "monitor_setup"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command /home/sgoodwin/bin/title
+        status_command /home/shawn/bin/title
     colors {
             background #29091E
             separator #232E0A
