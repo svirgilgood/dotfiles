@@ -62,7 +62,7 @@ source $HOME/.cargo/env
 # aliases
 
 alias info='info --vi-keys'
-alias vim=nvim
+# alias vim=nvim
 alias ls='ls --color=auto'
 export PATH="~/anaconda3/bin:$PATH"
 export PATH="~/bin:$PATH"
