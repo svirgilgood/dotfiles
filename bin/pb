@@ -36,4 +36,4 @@ EOF
 
 chmod 644 "$name.html"
 rsync --progress "$name.html" "$SERVER":library.edubbainstitute.org/code/
-echo -n "http://library.edubbainstitute.org/code/$name.html"
+echo -n "http://library.edubbainstitute.org/code/$name.html\n"

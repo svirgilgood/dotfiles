@@ -1,3 +1,6 @@
+" escape key remaping
+" noremap jk <esc>
+" inoremap jk <esc>
 " pathogen
 execute pathogen#infect()
 syntax on 
@@ -16,16 +19,18 @@ set shiftwidth=4
 set expandtab
 augroup vimrcEx
 au!
+    autocmd BufRead *.sql set tw=100 tabstop=2 shiftwidth=2 expandtab | :DBC
     autocmd FileType text setlocal textwidth=78
     autocmd BufRead *.asciidoc set tw=78 | :Voom asciidoc
     autocmd BufRead *.adoc set tw=78 | :Voom asciidoc
     autocmd BufRead *.md set tw=78 | :Voom markdown
     autocmd BufRead *.py set tw=88
-    autocmd BufRead *.js set tabstop=2
     autocmd BufRead *.html set tabstop=2
-    autocmd BufRead *.js set shiftwidth=2
-    autocmd BufRead *.html set shiftwidth=2
     autocmd BufWritePre *.py execute ':Black'
+    autocmd BufRead *.rst set tw=78 
+    autocmd BufRead *.js set tabstop=2 shiftwidth=2 expandtab
+    autocmd BufReadPost *.js AsyncRun -post=checktime ./node_moduels/.bin/eslint --fix %
+    autocmd BufWritePost *.py :Black
     autocmd BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
@@ -36,6 +41,14 @@ let mapleader=','
 
 inoremap <C-U> <C-G>u<C-U>
 
+" emmet settings
+" let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+    \ 'javascript.jsx' : {
+        \ 'extends' : 'jsx',
+        \},
+    \}
+
 " reformat
 noremap <leader>r mvgq}`v
 
@@ -43,16 +56,22 @@ noremap <leader>i :set rightleft!<cr>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
+nnoremap <C-j> gt 
+nnoremap <C-k> gT
+ 
 " navigation
-
+noremap <C-o> :Voom python<cr>
 noremap <C-n> :NERDTreeToggle<CR>
 nnoremap <backspace> <C-u>
 nnoremap <space> <C-D>
 noremap <leader>l <C-w>l
 noremap <leader>k <C-w>k
-noremap <leader>j <C-w>j
+noremap <leader>j <C-w> j
 noremap <leader>h <C-w>h
+nnoremap <C-j> gt
+nnoremap <C-k> gT
+nmap <silent> <leader>< <Plug>(ale_previous_wrap)
+nmap <silent> <leader>> <Plug>(ale_next_wrap)
 hi Pmenu ctermfg=8 ctermbg=0
 hi PmenuSel ctermfg=6 ctermbg=0
 nnoremap <C-j> gt
@@ -100,15 +119,78 @@ function! DoPrettyXML()
   silent %!xmllint --format -
   " xmllint will insert an <?xml?> header. it's easy enough to delete
   " if you don't want it.
-  " delete the fake tags
-  " 2d
+  " delete the fake tags 2d
   $d
   " restore the 'normal' indentation, which is one extra level
   " too deep due to the extra tags we wrapped around the document.
   silent %<
-  " back to home
   1
   " restore the filetype
   exe "set ft=" . l:origft
 endfunction
 command! PrettyXML call DoPrettyXML()
+
+
+" Unicode and MARC functionalities 
+
+" This function is for turning unicode input into the ANSEL format that is
+" required for MARC. It relies on the command `mf`, which is a python script
+" found in my bin. 
+func! EncodeMarc(text)
+    echo a:text
+    let command = "mf " . a:text
+    let itext = substitute(system(command), "\n", "", "")
+    let @a = itext
+    echo itext
+endfunc
+
+" Highlight the text in visual mode, then call execute <c-q>. This deletes the
+" text, calls the EncodeFunction, passing whatever is in the selection (what
+" was just deleted) to the function, then moves the curser to the left one
+" position, and pastes the corrected text in the same place
+vnoremap <c-q> d:call EncodeMarc("<c-r>"")<cr>h"ap
+
+" This calls the python cmd `mf` and puts the results on the next line. 
+" nnoremap <c-q> mvbye:r!mf <c-r>"<cr>>>`v
+nnoremap <c-q> mv0y$:r!mf <c-r>"<cr>>>`v
+inoremap <c-w> <esc>mvbye:r!mf <c-r>"<cr>>>`v
+" Take the word in register k and paste it over {esc...(B characters
+nnoremap <c-w> dfBh"kp
+
+
+" ale mapings
+
+" vench mappings
+
+" vnoremap <c-q> d:call EncodeMarc("<c-r>"")<cr>h"ap
+vnoremap <c-q> :! mf<cr><cr>
+
+" This calls the python cmd `mf` and puts the contents of the regester through
+" the command and results on the next line. 
+" nnoremap <c-q> :r!mf <c-r>"<cr>>>
+
+nnoremap <c-q> mvbye:r!mf <c-r>"<cr>>>`v
+inoremap <c-w> <esc>mvbye:r!mf <c-r>"<cr>>>`v
+
+
+
+" vench mappings
+
+
+" nnoremap <leader>t :python3 table_lists()<cr>
+
+inoremap <c-y> <esc>:ARead<cr>a<C-X><C-U>
+inoremap <expr> <c-q> AutoReadLine()
+
+inoremap <c-s> <esc>:AdAlias<cr>a
+nnoremap <c-s> :AdAlias<cr>
+
+" mermaid 
+func! MermaidSVGCreator()
+    let a:file_name = expand('%:p')
+    let a:out_file = '/tmp/out.svg'
+    execute 'silent !mmdc' '-i' a:file_name '-o' a:out_file '&'
+    redraw!
+endfunction 
+nmap <leader>t d:call MermaidSVGCreator()<cr>
+
