@@ -19,13 +19,13 @@ bindsym $mod+Mod1+l exec --no-startup-id $Locker, mode "default"
 
 # startup scripts
 
-# exec /home/sgoodwin/.screenlayout/normal.sh
-exec /home/shawn/.screenlayout/landscape.sh
-exec /home/shawn/bin/sxkbm
+exec ~/.screenlayout/normal.sh
+#exec ~/.screenlayout/landscape.sh
+exec ~/bin/sxkbm
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 24
+font pango:monospace 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -60,10 +60,10 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec /home/shawn/bin/dmr
+bindsym $mod+d exec ~/bin/dmr
 
 # filefinder script
-bindsym $mod+Shift+f exec /home/shawn/bin/filefinder
+bindsym $mod+Shift+f exec ~/bin/filefinder
 #
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -72,7 +72,7 @@ bindsym $mod+Shift+f exec /home/shawn/bin/filefinder
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Language
-bindsym $mod+Shift+s exec /home/shawn/bin/langswitcher.sh 
+bindsym $mod+Shift+s exec ~/bin/langswitcher.sh 
 # bindsym $mod+ܴܣ exec /home/shawn/bin/languagswitcher.sh
 
 
@@ -140,7 +140,7 @@ bindsym $mod+Shift+bracketleft exec mocp --seek -5
 bindsym $mod+Shift+bracketright exec mocp --seek +5
 bindsym $mod+Control+bracketleft exec mocp --seek -60
 #bindsym $mod+Control+bracketright exec mocp --seek +60
-bindsym $mod+z exec /home/shawn/bin/ntitle 
+bindsym $mod+z exec ~/bin/ntitle 
 #bindsym $mod+z exec notify-send "$HOME"
 
 # switch to workspace
@@ -215,13 +215,8 @@ mode "firefox_profiles" {
 bindsym $mod+Shift+w mode "firefox_profiles"
 
 mode "monitor_setup" {
-    bindsym n exec /home/sgoodwin/.screenlayout/normal.sh, mode "default"
-    bindsym m exec /home/sgoodwin/.screenlayout/landscape.sh, mode "default"
-    bindsym l exec /home/sgoodwin/.screenlayout/laptop.sh, mode "default"
-    bindsym h exec /home/sgoodwin/.screenlayout/home.sh, mode "default"
-    bindsym o exec /home/sgoodwin/.screenlayout/homethree.sh, mode "default"
-    bindsym f exec /home/sgoodwin/.screenlayout/threemonitors.sh, mode "default"
-    bindsym t exec /home/sgoodwin/.screenlayout/threeflat2.sh, mode "default"
+    bindsym n exec ~/.screenlayout/normal.sh, mode "default"
+    bindsym l exec ~/.screenlayout/laptop.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "defualt"
@@ -232,7 +227,7 @@ bindsym $mod+Shift+m mode "monitor_setup"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command /home/shawn/bin/title
+        status_command ~/bin/title
     colors {
             background #29091E
             separator #232E0A
