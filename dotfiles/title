@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+i3status | while :
+do
+    read line
+    kblayout="$(xkblystate print %s)"
+    readtitle="$(mocp -Q %title)"
+    if [ -z "$readtitle" ]; then
+        title="$(basename "$(mocp -Q %file)")"
+    else 
+        title="$readtitle"
+    fi
+    if [ -z "$title" ]; then
+        echo "$line | $kblayout" || exit 1
+    else
+        echo "$title | $line | $kblayout" || exit 1
+    fi
+done
