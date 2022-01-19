@@ -83,8 +83,11 @@ zathy() {
 }
 
 mm() {
-    sshfs echindod3@principal.dreamhost.com:smith/ /home/svg/Documents/mnt/
+    sshfs $HOMESERVER:../../mnt/storage/ $HOME/Music
     echo "Music Mounted!"
+}
+nterm() {
+    nohup urxvt &
 }
 export PATH=/home/svg/.gem/ruby/2.3.0/bin:$PATH
 source /usr/share/nvm/init-nvm.sh
