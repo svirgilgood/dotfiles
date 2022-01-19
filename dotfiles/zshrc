@@ -87,7 +87,7 @@ mm() {
     echo "Music Mounted!"
 }
 nterm() {
-    nohup urxvt &
+    nohup urxvt &> /dev/null &
 }
 export PATH=/home/svg/.gem/ruby/2.3.0/bin:$PATH
 source /usr/share/nvm/init-nvm.sh
