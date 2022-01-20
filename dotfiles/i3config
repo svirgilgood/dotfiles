@@ -40,6 +40,10 @@ font pango:monospace 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# take screen shot
+
+bindsym --release $mod+x exec --no-startup-id "~/bin/screenshot.sh"
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
