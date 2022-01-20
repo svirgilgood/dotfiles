@@ -5,17 +5,30 @@
 #prompt adam1
 
 
+
 #PROMPT
+# prompt assumes the crontab 
+# #m H D M W comand
+# 15 * * * * yay -Qu > ~/.updates
+# # for the arch news output
+# 5 * * * * yay -Pw >> ~/.config/archnews.txt
+# And also to the sudo crontab 
+# # update the package list
+# 10 * * * * yay -Syy 
+
 [[ -n $SSH_TTY ]] && host="%F{green}%m%f:"
 precmd() {
   PROMPT="$host%F{blue}%~%f> "
   updates="$(cat $HOME/.updates | wc -l)" 2> /dev/null
+  news="$(cat $HOME/.config/archnews.txt | wc -l)" 2> /dev/null
   branch=$(git branch | fgrep '*') 2> /dev/null
   if [[ -n $branch ]]; then
     [[ -n $(git status -s) ]] 2> /dev/null && colo='red' || colo='green'
     PROMPT="%F{$colo}${branch#* }%f|$PROMPT"
   fi
-  [[ $updates != 0 && -n $updates ]] && PROMPT="%F{yellow}$updates%f|$PROMPT"
+
+  [[ $news != 0 && -n $news ]] && colo='red' || colo='yellow'
+  [[ $updates != 0 && -n $updates ]] && PROMPT="%F{$colo}$updates%f|$PROMPT"
   [[ $USER = 'root' ]] && PROMPT="%F{yellow}%m%f:%F{red}%~%f# "
   PROMPT2=$(print -P $PROMPT|sed 's/././g')
 }
