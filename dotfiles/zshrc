@@ -43,8 +43,8 @@ bindkey -v
 #source ~/.bash_profile
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
@@ -75,25 +75,40 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # aliases
 
 alias info='info --vi-keys'
-# alias vim=nvim
 alias ls='ls --color=auto'
 export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-libgen() {
-    url='http://gen.lib.rus.ec/search.php?req='"$@"
-    w3m "$url"
+pp() {
+    xclip -o -selection clipboard
 }
+
+yy() {
+    xclip -i -selection clipboard
+}
+
+pi() {
+    xclip -o -selection clipboard | xclip -i -selection primary
+}
+
 c() {
     dir="$(dirlog-cd "$@")"
         if [ "$dir" != "" ]; then
             cd "$dir" && ls
         fi
 }
+ll(){
+    ls -lahG "$@"
+}
 zathy() {
 	zathura "$@" 2> /dev/null &
 }
+timecard() {
+    pp | rep -F '\t' 'd.setdefault(f[2].split()[0], []).append(float(f[4]))' -e 'map(lambda x: (x[0], sum(x[1])), d.items())'
+}
+
+
 
 mm() {
     sshfs $HOMESERVER:../../mnt/storage/ $HOME/Music
@@ -104,3 +119,6 @@ nterm() {
 }
 export PATH=/home/svg/.gem/ruby/2.3.0/bin:$PATH
 source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
