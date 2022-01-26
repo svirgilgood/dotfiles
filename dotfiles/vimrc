@@ -19,6 +19,7 @@ set shiftwidth=4
 set expandtab
 augroup vimrcEx
 au!
+    autocmd BufWritePre * :%s/\s\+$//e
     autocmd BufRead *.sql set tw=100 tabstop=2 shiftwidth=2 expandtab | :DBC
     autocmd FileType text setlocal textwidth=78
     autocmd BufRead *.asciidoc set tw=78 | :Voom asciidoc
