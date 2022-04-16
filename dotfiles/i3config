@@ -137,6 +137,8 @@ bindsym $mod+Shift+bracketright exec mocp --seek +5
 bindsym $mod+Control+bracketleft exec mocp --seek -60
 bindsym $mod+Control+bracketright exec mocp --seek +60
 
+
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -168,6 +170,18 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+#monitor
+mode "monitor_setup" {
+    bindsym l exec ~/.screenlayout/laptop.sh, mode "default"
+
+    bindsym h exec ~/.screenlayout/home_vertical_stacked.sh, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "defualt"
+}
+
+# enter monitor select mode
+bindsym $mod+m mode monitor_setup
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
