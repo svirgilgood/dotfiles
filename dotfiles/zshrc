@@ -7,14 +7,14 @@
 
 
 #PROMPT
-# prompt assumes the crontab 
+# prompt assumes the crontab
 # #m H D M W comand
 # 15 * * * * yay -Qu > ~/.updates
 # # for the arch news output
 # 5 * * * * yay -Pw >> ~/.config/archnews.txt
-# And also to the sudo crontab 
+# And also to the sudo crontab
 # # update the package list
-# 10 * * * * yay -Syy 
+# 10 * * * * yay -Syy
 
 [[ -n $SSH_TTY ]] && host="%F{green}%m%f:"
 precmd() {
@@ -39,7 +39,7 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -v
 
-#source ~/.bashrc 
+#source ~/.bashrc
 #source ~/.bash_profile
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
@@ -68,8 +68,8 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #source $HOME/.cargo/env
 
 # aliases
@@ -106,6 +106,11 @@ zathy() {
 }
 timecard() {
     pp | rep -F '\t' 'd.setdefault(f[2].split()[0], []).append(float(f[4]))' -e 'map(lambda x: (x[0], sum(x[1])), d.items())'
+}
+
+supsu() {
+    yay -Syu || exit 1;
+    yay -Qu > ~/.updates; yay -Pw > ~/.config/archnews.txt;
 }
 
 
