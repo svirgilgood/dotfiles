@@ -7,8 +7,12 @@
 
 # i3 config file (v4)
 #
-exec i3-sensible-terminal
-exec_always --no-starup-id dropbox
+exec xrdb -merge ~/.Xresources
+
+exec feh --bg-scale /home/sgoodwin/Photos/Hubble-Veil-Nebula-scaled.jpg
+
+#exec i3-sensible-terminal
+#exec_always --no-starup-id dropbox
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
@@ -21,17 +25,16 @@ bindsym $mod+Mod1+l exec --no-startup-id $Locker, mode "default"
 
 # startup scripts
 
-exec ~/.screenlayout/home_vertical_stacked.sh
+exec ~/.screenlayout/home_horizontal.sh
 
 # Primary Workspaces
-workspace 1 output eDP-1
+workspace 6 output eDP-1
 
 # For Home set up
-workspace 3 output DP-1 eDP-1
-workspace 7 output DP-2 eDP-1
+workspace 1 output DP-2 eDP-1
 
 # Secondary Workspaces
-workspace 2 output eDP-1
+workspace 7 output eDP-1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -174,7 +177,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "monitor_setup" {
     bindsym l exec ~/.screenlayout/laptop.sh, mode "default"
 
-    bindsym h exec ~/.screenlayout/home_vertical_stacked.sh, mode "default"
+    bindsym h exec ~/.screenlayout/home_horizontal.sh, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "defualt"
