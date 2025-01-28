@@ -15,22 +15,25 @@
 # And also to the sudo crontab
 # # update the package list
 # 10 * * * * yay -Syy
-
-[[ -n $SSH_TTY ]] && host="%F{green}%m%f:"
+# 
+# [[ -n $SSH_TTY ]] && host="%F{green}%m%f:"
+# precmd() {
+#   PROMPT="$host%F{blue}%~%f> "
+#   updates="$(cat $HOME/.updates | wc -l)" 2> /dev/null
+#   news="$(cat $HOME/.config/archnews.txt | wc -l)" 2> /dev/null
+#   branch=$(git branch | fgrep '*') 2> /dev/null
+#   if [[ -n $branch ]]; then
+#     [[ -n $(git status -s) ]] 2> /dev/null && colo='red' || colo='green'
+#     PROMPT="%F{$colo}${branch#* }%f|$PROMPT"
+#   fi
+# 
+#   [[ $news != 0 && -n $news ]] && colo='red' || colo='yellow'
+#   [[ $updates != 0 && -n $updates ]] && PROMPT="%F{$colo}$updates%f|$PROMPT"
+#   [[ $USER = 'root' ]] && PROMPT="%F{yellow}%m%f:%F{red}%~%f# "
+#   PROMPT2=$(print -P $PROMPT|sed 's/././g')
+# }
 precmd() {
-  PROMPT="$host%F{blue}%~%f> "
-  updates="$(cat $HOME/.updates | wc -l)" 2> /dev/null
-  news="$(cat $HOME/.config/archnews.txt | wc -l)" 2> /dev/null
-  branch=$(git branch | fgrep '*') 2> /dev/null
-  if [[ -n $branch ]]; then
-    [[ -n $(git status -s) ]] 2> /dev/null && colo='red' || colo='green'
-    PROMPT="%F{$colo}${branch#* }%f|$PROMPT"
-  fi
-
-  [[ $news != 0 && -n $news ]] && colo='red' || colo='yellow'
-  [[ $updates != 0 && -n $updates ]] && PROMPT="%F{$colo}$updates%f|$PROMPT"
-  [[ $USER = 'root' ]] && PROMPT="%F{yellow}%m%f:%F{red}%~%f# "
-  PROMPT2=$(print -P $PROMPT|sed 's/././g')
+  PROMPT="$(prompt)"
 }
 
 
@@ -80,12 +83,48 @@ export PATH="$HOME/anaconda3/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+windowManagerName () {
+    local window=$(
+        xprop -root -notype
+    )
+
+    local identifier=$(
+        echo "${window}" |
+        awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}'
+    )
+
+    local attributes=$(
+        xprop -id "${identifier}" -notype -f _NET_WM_NAME 8t
+    )
+
+    local name=$(
+        echo "${attributes}" |
+        grep "_NET_WM_NAME = " |
+        cut --delimiter=' ' --fields=3 |
+        cut --delimiter='"' --fields=2
+    )
+
+    echo "${name}"
+}
+
 pp() {
+  windowManager="$(windowManagerName)";
+  if [[ "$windowManager" == "wlroots" ]]; then
+    #xclip -o -selection clipboard
+    wl-paste
+  else
     xclip -o -selection clipboard
+  fi
+
 }
 
 yy() {
+  windowManager="$(windowManagerName)";
+  if [[ "$windowManager" == "wlroots" ]]; then
+    wl-copy
+  else
     xclip -i -selection clipboard
+  fi
 }
 
 pi() {
@@ -123,7 +162,7 @@ nterm() {
     nohup urxvt &> /dev/null &
 }
 export PATH=/home/svg/.gem/ruby/2.3.0/bin:$PATH
-source /usr/share/nvm/init-nvm.sh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#source /usr/share/nvm/init-nvm.sh
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
