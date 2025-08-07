@@ -39,7 +39,7 @@ def get_governor():
 def get_kblayout():
     """Return the current x keyboard layout"""
     return subprocess.run(
-        ["xkblystate", "print", "%s"], capture_output=True, text=True
+        ["xkblystate", "print", "%n (%s)"], capture_output=True, text=True
     ).stdout
 
 
@@ -47,12 +47,12 @@ def get_song_title():
     """return the title of the song to be played, or the song file
     name, or nothing"""
     title = subprocess.run(
-        ["mocp", "-Q", "%title"], capture_output=True, text=True
+        ["mpc", "current", "-f", "%artist% - %title%"], capture_output=True, text=True
     ).stdout.strip()
 
     if not title:
         file_name = subprocess.run(
-            ["mocp", "-Q", "%file"], capture_output=True, text=True
+            ["mpc", "current", "-f", "%file%"], capture_output=True, text=True
         ).stdout
         title = os.path.basename(file_name)
     return title.strip()
