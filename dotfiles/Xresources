@@ -4,12 +4,16 @@ URxvt.scrollBar: false
 URxvt.background: rgb:10/0c/08
 URxvt.foreground: gray
 !! Font prefferenes
-URxvt.font: xft:DejaVu Sans Mono:size=12
-URxvt.boldFont: xft:DejaVu Sans Mono:size=12:weight=bold
+URxvt.font: xft:DejaVuSansM Nerd Font Mono:size=10
+!!URxvt.font: xft:monospace:size=10
+!!URxvt.boldFont: xft:monospoce:size=10:weight=bold
+URxvt.boldFont: xft:DejaVuSansM Nerd Font Mono:size=10
 URxvt.letterSpace: -1
 !! Larger history limit
 URxvt.saveLines: 1000000
 
+URxvt*transparent: true
+URxvt*shading: 15
 !! Perl extensions
 URxvt.perl-ext-common: default,matcher,font-size
 !! Open urls in browser with Control-Click
@@ -32,14 +36,42 @@ URxvt.keysym.Control-Right: \033[1;5C
 
 !! Tango color theme
 !! Strange - it matches tango from gnome-terminal, but looks different
-!! URxvt.color0: rgb:00/00/00
-!! URxvt.color1: rgb:CC/00/00
-!! URxvt.color2: rgb:4E/9A/06
+! black
+!URxvt.color0: rgb:00/00/00 
+URxvt.color0: #070D0F
+URxvt.color8: rgb:55/57/53
+! red #599D90
+URxvt.color1: rgb:CC/00/00
+URxvt.color9: rgb:EF/29/29
+! green 
+URxvt.color2: #599D90
+URxvt.color10: #83b0a8
+! yellow 
+URxvt.color3: #9B6C45
+URxvt.color11: #af8969 
+!rgb:FC/E9/4F
+! blue
+URxvt.color4: #386A90
+URxvt.color12: #489FCF
+! magenta 
+URxvt.color5: rgb:75/50/7B
+URxvt.color13: rgb:AD/7F/A8
+! cyan
+URxvt.color6: #627373
+URxvt.color14: #599D90
+! white
+URxvt.color7: #C9BDB3
+URxvt.color15: rgb:EE/EE/EC
+
+URxvt.colorBD: rgb:ff/ff/ff
+
+
+!! URxvt.color2: #252A22ff
 !! URxvt.color3: rgb:C4/A0/00
-!! URxvt.color4: rgb:34/65/A4
-!! URxvt.color5: rgb:75/50/7B
-!! URxvt.color6: rgb:06/98/9A
-!! URxvt.color7: rgb:D3/D7/CF
+!! URxvt.color4: #386A90ff
+!! URxvt.color5: #599D90ff
+!! URxvt.color6: rgb:75/50/7B
+!! URxvt.color7: #C9BDB3ff
 !! URxvt.color8: rgb:55/57/53
 !! URxvt.color9: rgb:EF/29/29
 !! URxvt.color10: rgb:8A/E2/34
