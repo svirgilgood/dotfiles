@@ -35,7 +35,7 @@ See [xsettingsd in the arch wiki for details](https://wiki.archlinux.org/title/X
  The `XAUTHORITY` variable needs to be set in .profile or .env (for example `export XAUTHORITY="$HOME/.Xauthority` in .zshenv)
 
 1. Start the service:
-`system --user start xsettingsd.service`
+`systemctl --user start xsettingsd.service`
 
 
 ### Install Necessary JRE 
