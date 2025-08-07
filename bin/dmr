@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NB="#070D0F" # normal background color
+NF="#C9BDB3" # normal foreground color
+SB="#386A90"
+SF="#070D0F"
+DMENU="dmenu -i -nb "$NB" -nf "$NF" -sb "$SB" -sf "$SF""
+dmenu_path | $DMENU "$@" | ${SHELL:-"/bin/sh"} &
